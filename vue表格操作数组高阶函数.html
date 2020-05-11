@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js" type="text/javascript" ></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="app">
+         <table>
+             <thead>
+                 <tr>
+                     <th></th>
+                     <th>书籍名称</th>
+                     <th>出版日期</th>
+                     <th>价格</th>
+                     <th>购买数量</th>
+                     <th>操作</th>
+                 </tr>
+             </thead>
+             <tbody>
+                <tr v-for="(item,index) in books">
+                    <td>{{item.id}}</td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.date}}</td>
+                    <!--过滤器filters-->
+                    <td>{{item.price | showPrice}}</td>
+                    <td>
+                        <!--动态绑定disabled-->
+                        <button @click="less(index)"  v-bind:disabled="item.count <=1">-</button>
+                        {{item.count}}
+                        <button @click="add(item.id)">+</button>
+                    </td>
+                    <td><button @click="remove(index)">移除</button></td>
+                </tr>
+             </tbody>
+         </table>
+         <div v-if="books.length > 0">
+         <h2>总价格：{{tatolPrice | showPrice}}</h2>
+        </div>
+        <div v-else><h2>购物车为空</h2></div>
+    </div>
+    <script>
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+               books:[
+                   {
+                       id:1,
+                       name:"《算法导论》",
+                       date:'2006-9',
+                       price:85.00,
+                       count:1
+
+                   },
+                   {
+                       id:2,
+                       name:"《UNIX编程艺术》",
+                       date:'2006-2',
+                       price:59.00,
+                       count:1
+
+                   },
+                   {
+                       id:3,
+                       name:"《编程珠玑》",
+                       date:'2008-10',
+                       price:39.00,
+                       count:1
+
+                   },
+                   {
+                       id:4,
+                       name:"《代码大全》",
+                       date:'2006-3',
+                       price:128.00,
+                       count:1
+
+                   }
+                  
+
+               ]
+            },
+            filters:{
+                showPrice:function(price){
+                 return "￥"+price.toFixed(2);
+                }
+            },
+            computed:{
+                tatolPrice:function()
+                {
+                    var tatol=0;
+                    // for(var i=0;i < this.books.length; i++)
+                    // {
+                    //     tatol+=this.books[i].price*this.books[i].count;
+                    // }
+
+                    // for(var i in this.books)
+                    // {
+                    //     tatol+=this.books[i].price*this.books[i].count;
+                    // }
+
+                    // for(var book of this.books)
+                    // {
+                    //     tatol+=book.price*book.count;
+                    // }
+                    // console.log(tatol);
+                    // return tatol;
+                    return this.books.reduce(function(prevalue,book){
+                        return prevalue+book.price*book.count
+                    },0);
+                }
+            },
+            methods:{
+                add:function(index){
+                    console.log(index);
+                //     console.log( this.books[index]);
+                //    this.books[index].count++;
+                   var book=this.books.filter(function(n){
+                       return n.id==index
+                   })
+                   console.log(book);
+                   book[0].count++;
+                },
+                less:function(index){
+                   this.books[index].count--;
+                },
+                remove:function(index){
+                    this.books.splice(index,1); 
+                }
+            }
+    
+        });
+
+
+
+//typescript高阶函数
+//filter方法
+var nums=[20,30,211,12,100,222,49];
+//获取小于100的数组,filter 返回true和fasle，返回true会将元素n添加进新数组，false会过滤掉
+var newNuns=nums.filter(function(n){
+return n<100;
+})
+console.log(newNuns);
+
+//对数组每个元素乘以2返回新的数组，map方法对每个n元素操作之后返回
+var new2nums=newNuns.map(function(n){
+    return n * 2;
+
+})
+console.log(new2nums);
+
+//reduce函数，遍历数组进行操作,prevalue初始值为0，n为当前元素，每次遍历prevalue为前一个返回的值
+//计算数组总数
+var tatol=new2nums.reduce(function(prevalue,n){
+   return prevalue+n;
+},0)
+console.log(tatol);
+
+//以上高阶函数写法
+var tatols=nums.filter(function(n){
+    return n<100;
+}).map(function(n){
+    return n*2;
+}).reduce(function(prevalue,n){
+    return prevalue+n;
+},0)
+console.log(tatols);
+
+//还可以这样写
+var newtatole=nums.filter(n=>n<100).map(n=>n*2).reduce((prevalue,n)=>prevalue+n);
+console.log(newtatole);
+    </script>
+</body>
+</html>

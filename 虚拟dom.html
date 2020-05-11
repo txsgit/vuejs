@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+    <div v-if="isshow">
+        <!--虚拟dom，在切换div时，label和input标签添加key来同时替换，key要唯一-->
+        <label key="username">用户账号</label>
+        <input name="username" value="" placeholder="请输入用户名" key="usernamevalue"/>
+    </div>
+    <div v-else>
+        <label key="emal">邮箱账号</label>
+        <input name="email" value="" placeholder="请输入邮箱" key="emailvalue"/>
+    </div>
+    <button @click="change">切换账号类型</button>
+</div>
+    <script>
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                isshow:true
+            },
+            methods:{
+                change:function(){
+                    this.isshow=!this.isshow
+                }
+            }
+    
+        });
+    </script>
+</body>
+</html>

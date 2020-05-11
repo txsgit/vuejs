@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+    
+    //Promise ES6 异步编程的解决方案
+ //异步请求成功调用resolve 然后执行then
+ //异步请求失败调用 reject 然后执行catch
+//  new Promise(function (resolve,reject) {
+
+
+//     //使用settimeout模拟异步网络请求
+//     setTimeout(function (){
+//         // resolve("请求成功");
+//         reject("请求失败")
+//     },1000)
+//  }).then(function (data){
+//     console.log(data)
+//  }).catch(function(err){
+//      console.log(err);
+//  })
+
+ //Promise链式调用
+//  new Promise(function(resolve,reject){
+
+//      setTimeout(function(){
+//          resolve("aaa");
+//          console.log("aaaa 第一次调用")
+//      },1000)
+//  }).then(function(data1){
+
+//     return new Promise(function(resolve,reject){
+//         resolve(data1+"1111")
+//         console.log(data1+"1111 第二次调用")
+//     })
+//     // .then(function(data2){
+//     //     console.log(data2+"22222 第三次调用")
+//     // })
+//  }).then(function(data2){
+    
+//         console.log(data2+"3333 第ss次调用")
+//  })
+
+//promise all用法  将多个异步请求结果合并
+Promise.all([
+   
+        new Promise(function(resolve,reject){
+            setTimeout(() => {
+                resolve("执行成功111")
+        }, 1000)
+        }),
+        new Promise(function(resolve,reject){
+            setTimeout(() => {
+                resolve("执行成功222")
+        }, 1000)
+        })
+      
+    
+]).then(function(data){
+   console.log(data)
+})
+</script>
+</body>
+</html>

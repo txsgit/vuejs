@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+       <div v-if="score > 60">
+           分数大于60分
+       </div>
+       <!-- <div v-else="score < 60">
+           分数小于60分
+       </div> -->
+       <div v-else>
+        分数等于60分
+    </div>
+    </div>
+    <script>
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                score:88
+            }
+    
+        });
+    </script>
+</body>
+</html>

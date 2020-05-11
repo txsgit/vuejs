@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--使用组件-->
+       <ncp></ncp>
+       <ncp></ncp>
+       <ncp ref="ncp3"></ncp>
+        <button @click="bitclick"> 按钮</button>
+      
+      
+    </div>
+    <!--创建模板-->
+    <template id="ncp">
+        <div>
+            <h2>这是一个子组件</h2>
+            <button @click="getmessage">子按钮</button>
+        </div>
+    </template>
+    <script>
+        var app=new Vue({
+             el:'#app',
+            data:{
+                message:'你好，vue'
+            },
+            methods:{
+
+                bitclick:function()
+                {
+                  //访问子组件,$children返回子组件数组，生成几个子组件就会有几个元素
+                //   console.log(this.$children[0].msg)//访问data数据
+                //   console.log(this.$children[0].getmessage());
+                //   for(var obj of this.$children)
+                //   {
+                //       var ss=obj.getmessage();
+                //        console.log(ss);
+                //   }
+                  //$refs获取指定某个子组件，返回的是一个key:value数据对象
+                  console.log(this.$refs.ncp3.msg)
+                  console.log(this.$refs.ncp3.getmessage())
+                }
+            },
+            //创建子组件
+            components:{
+                ncp:{
+                    template:'#ncp',
+                    data:function(){
+                        return {
+                            msg:"asda"
+                        }
+                    },
+                    methods:{
+                        getmessage:function(){
+                            console.log("sds");
+                           
+                        }
+                    }
+                }
+            }
+    
+        });
+    </script>
+</body>
+</html>

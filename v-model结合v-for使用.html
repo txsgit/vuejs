@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--v-for结合v-model使用chechbox选择框动态获取值-->
+        <!--使用v-for的显示必须在整个v-for的对象范围-->
+        <label v-for="item in arrays" >
+        <input v-model="select" type="checkbox" :value="item">{{item}}
+    </label>
+    <h2>你选择的是：{{select }}</h2>
+        
+    </div>
+    <script>
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                message:'你好，vue',
+                arrays:["篮球","足球","排球","乒乓球"],
+                select:[]
+            }
+    
+        });
+    </script>
+</body>
+</html>

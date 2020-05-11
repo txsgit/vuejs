@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/jquery-3.5.0.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+     $.post("http://localhost:8081/user/adduser",
+  {
+    id:"121"
+  },
+  function(data,status){
+    console.log(data);
+    
+  });
+</script>
+</html>

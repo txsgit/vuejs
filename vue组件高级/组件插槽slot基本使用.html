@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--使用组件 使用slot插槽可以向组件添加各种标签-->
+       <ncp>
+           <button @click="ziClick">按钮</button>
+           <ul>
+               <li>篮球</li>
+               <li>足球</li>
+               <li>排球</li>
+           </ul>
+        </ncp>
+       <ncp><span>这是插槽内容</span></ncp>
+       <ncp></ncp>
+    </div>
+    <!--组件模板-->
+    <template id="ncp">
+        <!--添加根元素-->
+        <div>
+           <h2>我是一个组件</h2>
+           <p>这是一个内容</p>
+           <!---添加组件插槽-->
+           <slot><button @click="ziClick1">按钮</button></slot>
+        </div>
+    </template>
+    <script>
+        var app=new Vue({
+             el:'#app',
+             methods:{
+                        ziClick:function(){
+                            console.log("组件插槽click");
+                        }
+                    },
+             //创建注册组件,可以创建多个子组件
+             components:{
+                 ncp:{
+                    template:'#ncp',
+                    data:function(){
+                        return {
+                            message:'我是组件'
+                        }
+                    },
+                    methods:{
+                        ziClick1:function(){
+                            console.log("组件插槽click11");
+                        }
+                    }
+                 }
+             }
+    
+        });
+    </script>
+</body>
+</html>

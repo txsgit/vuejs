@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--使用组件-->
+        <my-conn></my-conn>
+       <myconn2></myconn2>
+    </div>
+    <script>
+
+     //创建组件 
+    // var myComponet1= Vue.extend({
+    //      template:'<div><h2>这是一个标题111</h2><p>这是内容，你好啊Vue</p></div>'
+    //  });
+    
+     //注册组件 全局组件 语法糖
+     Vue.component('my-conn',{
+        template:'<div><h2>这是一个标题111</h2><p>这是内容，你好啊Vue</p></div>'
+    });
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                message:'你好，vue'
+            },
+            components:{
+               //局部组件语法糖
+               'myconn2':{
+                template:'<div><h2>这是一个标题22222</h2><p>这是内容，2222Vue</p></div>'
+               }
+            }
+    
+        });
+    </script>
+</body>
+</html>

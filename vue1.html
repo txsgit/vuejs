@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+       <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script-->
+<script src="./js/vue.js" type="text/javascript" ></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <h1>{{user.name}}  {{user.age}}</h1>
+      <button value="点击" @click="bit">点击</button>
+      <ul>
+        <li v-for="item in list">
+          {{item.name}} <span :title="item.name">{{item.age}}</span>
+        </li>
+      </ul>
+      </div>
+     
+<script>
+     var app = new Vue({
+        el: '#app',
+        data: {
+          message: "Hello vue!",
+          user:{
+            name:'张三',
+            age:23          },
+          list:[
+            {name:'txxs',age:21},
+            {name:'第三方',age:22}
+          ]
+        
+
+
+        },
+        methods:{
+          bit:function(){
+            console.log(this);
+            alert(this.message);
+          }
+        }
+      })
+</script>
+</body>
+</html>

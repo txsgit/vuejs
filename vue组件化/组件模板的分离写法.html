@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--使用组件-->
+       <my-conn></my-conn>
+
+       <my-conn2></my-conn2>
+      、
+    </div>
+<!--方法1-->
+<script type="text/x-template" id="cpn">
+   <div >
+       <h2>这是标题111</h2>
+       <p>这是内容啊实打实的</p>
+   </div>
+</script>
+<!--方法2-->
+<template id="cpn2">
+  
+    <div >
+        <h2>这是标题222</h2>
+        <p>这是内容啊实打2222</p>
+    </div>
+</template>
+
+    <script>
+
+     //创建组件 注册组件 全局
+    
+       Vue.component('my-conn',{
+           template:'#cpn'
+       });
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                message:'你好，vue'
+            },
+            components:{
+                'my-conn2':{
+                    template:'#cpn2'
+                }
+               
+            }
+    
+        });
+    </script>
+</body>
+</html>

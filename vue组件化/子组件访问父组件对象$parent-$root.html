@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--使用组件-->
+
+       <ncp ></ncp>
+       
+    </div>
+    <!--创建模板-->
+    <template id="ncp">
+        <div>
+            <h2>这是一个子组件</h2>
+           <ncp1></ncp1>
+        </div>
+    </template>
+
+    <template id="ncp1">
+        <div>
+            <h2>这是一个NPC1子组件</h2>
+            <button @click="getmessage1">子按钮</button>
+        </div>
+    </template>
+    <script>
+        var app=new Vue({
+             el:'#app',
+            data:{
+                message:'你好，vue'
+            },
+                    methods:{
+                        getmsg:function(){
+                            console.log("我是vue");
+                           
+                        }
+                    },
+            //创建子组件
+            components:{
+                ncp:{
+                    template:'#ncp',
+                    data:function(){
+                        return {
+                            msg:"asda"
+                        }
+                    },
+                    methods:{
+                        getmessage:function(){
+                            console.log("我是子组件");
+                           
+                        }
+                    },
+                    //组件创建子组件
+                    components:{
+                          ncp1:{
+                              template:'#ncp1',
+                              methods:{
+                                getmessage1:function(){
+                                 
+                                 //访问父组件,$parent返回父组件对象
+                                 console.log(this.$parent)
+                                 console.log(this.$parent.msg)
+                                 console.log(this.$parent.getmessage())
+                                //访问root组件 $root返回vue实例
+                                console.log(this.$root)
+                                console.log(this.$root.message)
+                                console.log(this.$root.getmsg())
+                            }
+                              }
+                          }
+                    }
+                }
+            }
+    
+        });
+    </script>
+</body>
+</html>

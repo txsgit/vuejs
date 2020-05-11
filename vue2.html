@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+   <div id="app">
+
+    <h2 @click="bit">{{message}}</h2> 
+    <h2>{{message}},撒大声地</h2>
+    <ul>
+        <li v-for="item in list">
+            <a :href="item.url">{{item.name}}</a>
+        </li>
+    </ul>
+    <h2 :class="getclasses()">{{message}}</h2>
+    <h2 :class="{active:true}">{{message}}</h2>
+
+    <!--点击列表文字变成红色，其他文字颜色不变-->
+    <ul>
+        <li v-for="(item,index) in movies"><p :class="{active:colorindex==index}"  @click="bitclass(index)">{{item}}</p></li>
+    </ul>
+
+    <!--计算属性computed-->
+    <h2>总价格:{{tatolprice}}</h2>
+    <ul>
+        <li v-for="(item,index) in books">
+         {{item.name +' '+item.price}}
+        </li>
+    </ul>
+   </div>
+
+<script>
+
+    var app=new Vue({
+         el:'#app',
+         data:{
+             message:'你好 vue.',
+             list:[
+                 {name:'张三',url:'http://baidu.com'},
+                 {name:'李四',url:'http://www.baidu.com'}
+                 
+             ],
+             color:'active',
+             movies:['海贼王','火影','一代宗师','大话西游'],
+             colorindex:0,
+             books:[
+                 {id:123,name:'java虚拟机',price:90},
+                 {id:456,name:'java并发',price:76},
+                 {id:789,name:'mysql',price:120}
+             ]
+         },
+         //计算属性，缓存效率比menthods效率高,数据不变执行一次
+         computed:{
+
+            tatolprice:function(){
+
+                var result=0;
+                // for(var i=0; i < this.books.length; i++)
+                // {
+                //     result+=this.books[i].price;
+                // }
+
+                // for(var i in this.books)
+                // {
+                //     result+=this.books[i].price;
+                // }
+                for(var book of this.books)
+                {
+                    result+=book.price;
+                }
+
+
+                return result;
+            }
+         },
+         methods:{
+             bit:function(){
+                 alert(22);
+             },
+             getclasses:function(){
+               return this.color;
+             },
+             bitclass:function(index){
+                
+               this.colorindex=index;
+             }
+         }
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <!--单个下拉框-->
+      <select name="fruit" v-model="fruit">
+          <option value="苹果1">苹果</option>
+          <option value="香蕉2">香蕉</option>
+          <option value="橘子3">橘子</option>
+          <option value="梨4">梨</option>
+      </select>
+      <h2>你选择的是：{{fruit}}</h2>
+
+       <!--多个下拉框  按着ctrl键选择多个-->
+       <select name="fruits" v-model="fruits" multiple>
+        <option value="苹果1">苹果</option>
+        <option value="香蕉2">香蕉</option>
+        <option value="橘子3">橘子</option>
+        <option value="梨4">梨</option>
+    </select>
+    <h2>你选择的是：{{fruits}}</h2>
+    </div>
+    <script>
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                fruit:'苹果',
+                fruits:[]
+            }
+    
+        });
+    </script>
+</body>
+</html>

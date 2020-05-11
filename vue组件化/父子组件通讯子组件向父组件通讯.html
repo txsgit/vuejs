@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>当前计数：{{count}}</h1>
+        <!--使用组件 父组件的数据动态绑定到子组件的属性上 多个参数arguments是个数组-->
+       <cnn v-bind:counter="count" v-on:cadd="bitclick(arguments)" @cless="bitclick(arguments)"></cnn>
+
+      
+      、
+    </div>
+<!--创建模板  一个模板只能有一个元素包裹-->
+<template id="cnid">
+    <div>
+    <button @click="add">+</button>
+    <button @click="less">-</button>
+</div>
+</template>
+    <script>
+    //创建一个子组件
+     var cnn={
+       template:'#cnid',
+       data:function(){
+           return {
+            counter:0
+           }
+       },
+      methods:{
+        add:function(){
+            this.counter++;
+            //2个参数，cadd是自定义事件 第一个是方法名，第二个是参数
+            this.$emit("cadd",this.counter,3);
+        },
+        less:function(){
+            this.counter--;
+            //2个参数 ， cless是自定义事件 第一个是方法名，第二个是参数
+            this.$emit("cless",his.counter,3);
+        }
+      }
+     }
+    
+     //这是一个root父组件
+        var app=new Vue({
+             el:'#app',
+            data:{
+                message:'你好，vue',
+                count:0
+            },
+            components:{
+                cnn:cnn
+               
+            },
+            methods:{
+                bitclick:function(args){
+                    //接收一个参数
+                    console.log(args);
+      
+                //    this.count=item
+                //    console.log(index);
+                }
+            }
+    
+        });
+    </script>
+</body>
+</html>

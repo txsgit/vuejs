@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .active{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+      <!--点击列表文字变成红色，其他文字颜色不变-->
+      <ul>
+        <li v-for="(item,index) in movies"><p :class="{active:colorindex==index}"  @click="bitclass(index)">{{item}}</p></li>
+    </ul>
+</div>
+    <script>
+
+        var app=new Vue({
+             el:'#app',
+             data:{
+                
+                 movies:['海贼王','火影','一代宗师','大话西游'],
+                 colorindex:0
+             },
+             methods:{
+                 bitclass:function(index){
+                    
+                   this.colorindex=index;
+                 }
+             }
+    
+        });
+    </script>
+</body>
+</html>

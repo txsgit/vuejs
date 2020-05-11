@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <!--v-for 遍历数组 加上索引-->
+       <ul>
+           <li v-for="(item,index) in arrays">
+             {{index+1}}.{{item}}
+           </li>
+       </ul>
+
+        <!--v-for 遍历对象 加上索引 格式：(value,name,index)-->
+        <ul>
+            <li v-for="(value,name,index) in user">
+              {{index+1}} .{{name}} : {{value}}
+            </li>
+        </ul>
+
+         <!--v-for 响应式修改元素-->
+         <ul>
+            <li v-for="item in letters">
+              {{item}}
+            </li>
+        </ul>
+        <button @click="updatelet">修改元素</button>
+    </div>
+    <script>
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                arrays:["asds",223,"黎明","邱淑贞"],
+                user:{
+                    id:123,
+                    name:"jackchen",
+                    age:53,
+                    heigth:1.75
+
+                },
+                letters:["a","b","c","e","d"]
+            },
+            methods:{
+                updatelet(){
+                    //修改元素
+                    // this.letters.push("aaa");//在数组最后添加元素
+                    // this.letters.pop();//删除数组最后一个元素
+                    // this.letters.shift();//删除数组第一个元素
+                    // this.letters.unshift("sss");//在数组最前面添加元素
+                    //splice(start,deletCount,items)//删除/替换/插入
+                    // this.letters.splice(2,1);//在数组第2个开始删除一个元素
+                    // this.letters.splice(2,1,"sdsd");//替换第三个元素
+                    // this.letters.splice(2,0,"sdsd");//在第二位插入元素
+
+                    // this.letters.sort();//排序
+                    this.letters.reverse();
+                    
+
+
+                
+
+                }
+            }
+    
+        });
+    </script>
+</body>
+</html>

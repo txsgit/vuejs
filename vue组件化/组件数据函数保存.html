@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--使用组件 每次使用组件就会创建一个组件实例-->
+       <my-conn></my-conn>
+       <my-conn></my-conn>
+       <my-conn></my-conn>
+
+       <!-- <myconn1></myconn1> -->
+      、
+    </div>
+    <!--创建一个模板  用于计数-->
+    <template id="cpn">
+        <div>
+            <h2>当前计数为：{{count}}</h2>
+            <button @click="add">+</button>
+            <button @click="less">-</button>
+        </div>
+    </template>
+    <script>
+
+     //注册组件包含对象数据和方法
+     Vue.component('my-conn',{
+         template:'#cpn',
+         //组件数据保存必须是一个函数，这样生成的模板就不会重复，每个模板实例都有自己唯一的对象数据
+         data: function(){
+           return {
+            count:0
+           }
+         },
+        methods:{
+            add:function(){
+              this.count++;
+            },
+            less:function(){
+              this.count--;
+            }
+        }
+     });
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                message:'你好，vue'
+            },
+            components:{
+                // myconn2:myComponet2
+                // myconn1:myComponet1
+            }
+    
+        });
+    </script>
+
+    <script>
+
+        //函数创建对象，使得每个对象实例都相互独立
+        function adb()
+        {
+            return {
+                name:'asc',
+                age:18
+            }
+        }
+        var obj1=adb();
+        var obj2=adb();
+        var obj3=adb();
+
+        obj1.name="abc";
+        console.log(obj1);
+        console.log(obj2);
+        console.log(obj2);
+
+        //如果先创建一个对象
+        var obj={
+            name:'asc',
+                age:18
+        }
+        function abc()
+        {
+            return obj
+        }
+        var obj4=abc();
+        var obj5=abc();
+        var obj6=abc();
+
+        obj4.name="abc";
+        console.log(obj4);
+        console.log(obj5);
+        console.log(obj6);
+
+    </script>
+</body>
+</html>

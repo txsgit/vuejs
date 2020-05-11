@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <!--单选绑定 true和false-->
+        <!--label的for 和 chechbox的id要相同，才能实现点击label同时chechbox也选中-->
+        <label for="agree">
+        <input v-model="isAgree" id="agree" name="input" type="checkbox">同意协议
+        </label>
+    <h2>你选择的是：{{isAgree}}</h2>
+    <button  v-bind:disabled="!isAgree">下一步</button>
+<br>
+        <!--多选绑定数组-->
+        <input v-model="array" value="篮球" type="checkbox">篮球
+        <input v-model="array" value="足球" type="checkbox">足球
+        <input v-model="array" value="排球" type="checkbox">排球
+        <h2>你选择的是：{{array}}</h2>
+       
+    </div>
+    <script>
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                isAgree:false,
+                array:[]
+            }
+    
+        });
+    </script>
+</body>
+</html>

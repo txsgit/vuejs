@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--使用组件-->
+       <myconn2></myconn2>
+
+       <!-- <myconn1></myconn1> -->
+      、
+    </div>
+    <script>
+
+     //创建组件 子组件
+    var myComponet1= Vue.extend({
+         template:'<div><h2>这是一个标题111</h2><p>这是内容，你好啊Vue</p></div>'
+     });
+       //创建组件 父组件  注意：父组件的模板中要引用子组件的名称myconn1
+    var myComponet2= Vue.extend({
+         template:'<div><h2>这是一个标题2222</h2><p>这是内容，你好啊Vue</p><myconn1></myconn1></div>',
+         components:{
+             myconn1:myComponet1
+         }
+     });
+     //注册组件
+    //  Vue.component('my-conn',myComponet);
+
+        var app=new Vue({
+             el:'#app',
+            data:{
+                message:'你好，vue'
+            },
+            components:{
+                myconn2:myComponet2
+                // myconn1:myComponet1
+            }
+    
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        
+       <ncp>
+           <!--获取插槽数据并改变展示形式-->
+           <template slot="1" slot-scope="eee">
+              {{eee.data}}
+           </template>
+       </ncp>
+       <ncp>
+
+        <div slot="2" slot-scope="ddd" >
+            {{ddd.data}}
+        </div>
+       </ncp>
+       <ncp></ncp>
+    </div>
+    <!--组件模板-->
+    <template id="ncp">
+        <!--添加根元素-->
+        <div>
+          
+           <!---添加组件插槽-->
+           <slot name="1" :data="array">
+               <ul>
+                   <li v-for="item in array">
+                      {{item}}
+                   </li>
+               </ul>
+           </slot>
+
+           <slot name="2" :data="letters">
+            <ul>
+                <li v-for="item in letters">
+                   {{item}}
+                </li>
+            </ul>
+        </slot>
+        </div>
+    </template>
+    <script>
+        var app=new Vue({
+             el:'#app',
+             //创建注册组件,可以创建多个子组件
+             components:{
+                 ncp:{
+                    template:'#ncp',
+                    data:function(){
+                        return {
+                            array:['足球','篮球','排球'],
+                            letters:['a','b','c']
+                        }
+                    }
+                 }
+             }
+    
+        });
+    </script>
+</body>
+</html>
